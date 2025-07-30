@@ -4,7 +4,7 @@ from src.styles.SL_chat_theme_Olusola import *
 from src.utils.farm_tools import *
 
 from src.config import APP_TITLE, APP_ICON
-from src.gemini_client import validate_api_key
+from src.gemini_client import validate_api_key, validate_weather_api_key
 
 # Page configuration
 st.set_page_config(
@@ -16,6 +16,7 @@ st.set_page_config(
 
 # Validate API key
 validate_api_key()
+validate_weather_api_key()
 
 # Initialize session state
 if "name" not in st.session_state:

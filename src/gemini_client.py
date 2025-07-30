@@ -1,5 +1,5 @@
 import google.generativeai as genai
-from src.config import GEMINI_API_KEY, MODEL_NAME
+from src.config import GEMINI_API_KEY, MODEL_NAME, weather_api_key
 import streamlit as st
 from src.tools import Tools, get_weather
 
@@ -64,4 +64,12 @@ def validate_api_key():
         return False
     return True
 
+
+def validate_weather_api_key():
+    """Check if Weather API key is configured."""
+    if not weather_api_key:
+        st.error("Weather API key not found. Please set your WEATHER_API_KEY in the .env file.")
+        st.stop()
+        return False
+    return True
     
