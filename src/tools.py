@@ -46,7 +46,7 @@ def get_weather(location: str):
 
         if response.status_code != 200:
             logging.error(f"Weather API error {response.status_code}: {response.text}")
-            return f"⚠️ Could not fetch weather for '{location}'. Please try a different location."
+            return f"⚠️ Hmm, I couldn't fetch the weather for '{location}'. Maybe try a nearby town?"
 
         data = response.json()
         weather_desc = data.get("weather", [{}])[0].get("description", "Unknown conditions").title()
@@ -56,12 +56,12 @@ def get_weather(location: str):
         wind_speed = data.get("wind", {}).get("speed", "N/A")
 
         return (
-            f"🌤️ Weather in {location.title()}:\n"
-            f"Condition: {weather_desc}\n"
-            f"Temperature: {temp_c}°C (Feels like {feels_like}°C)\n"
-            f"Humidity: {humidity}%\n"
-            f"Windspeed: {wind_speed} m/s"
+            f"It's currently {weather_desc.lower()} in {location.title()}, with a temperature of {temp_c}°C "
+            f"that feels like {feels_like}°C. The humidity is around {humidity}%, and the wind is blowing at "
+            f"{wind_speed} m/s.\n\n"
+            f"🌾 You might want to plan lighter activities if you're working outside. Shall I suggest anything?"
         )
+
 
     except requests.exceptions.RequestException as e:
         logging.error(f"Network error: {str(e)}")

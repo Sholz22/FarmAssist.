@@ -43,7 +43,7 @@ if st.session_state.chat_history:
 # Main app
 def main():
     # Custom chat theme
-    theme = StreamlitChatTheme()
+    theme = StreamlitChatTheme(ThemePresets.green_farm_theme())
     theme.apply_theme()
 
     st.title("🌿 FarmAssist 🌿")
