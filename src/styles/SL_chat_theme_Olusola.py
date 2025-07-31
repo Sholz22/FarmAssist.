@@ -121,18 +121,43 @@ class StreamlitChatTheme:
             padding: 15px 20px;
             border-radius: 20px 20px 5px 20px;
             margin: 10px 0 10px 20%;
-            backdrop-filter: blur(10px);
+            backdrop-filter: none;
         }}
         
         .bot-message {{
             background: {self.config.background_dark};
-            color: {self.config.text_color};
+            color: #000000 !important;
             padding: 15px 20px;
             border-radius: 20px 20px 20px 5px;
             margin: 10px 20% 10px 0;
             border-left: 4px solid {self.config.primary_color};
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            text-shadow: none !important;
+        }}
+        
+        /* Ensure ALL text in bot messages is black with no effects */
+        .bot-message *,
+        .bot-message p,
+        .bot-message div,
+        .bot-message span,
+        .bot-message li,
+        .bot-message ul,
+        .bot-message ol,
+        .bot-message h1,
+        .bot-message h2,
+        .bot-message h3,
+        .bot-message h4,
+        .bot-message h5,
+        .bot-message h6,
+        .bot-message strong,
+        .bot-message em,
+        .bot-message code,
+        .bot-message pre {{
+            color: #000000 !important;
+            text-shadow: none !important;
+            backdrop-filter: none !important;
+            filter: none !important;
         }}
         
         .message-header {{
@@ -142,9 +167,27 @@ class StreamlitChatTheme:
             opacity: 0.9;
         }}
         
+        /* User message header should remain white */
+        .user-message .message-header {{
+            color: white !important;
+        }}
+        
+        /* Bot message header should be black */
+        .bot-message .message-header {{
+            color: #000000 !important;
+            text-shadow: none !important;
+        }}
+        
         .message-content {{
             line-height: 1.5;
             word-wrap: break-word;
+        }}
+        
+        /* Bot message content should be black */
+        .bot-message .message-content,
+        .bot-message .message-content * {{
+            color: #000000 !important;
+            text-shadow: none !important;
         }}
         """
     
@@ -212,9 +255,10 @@ class StreamlitChatTheme:
             padding: 12px 24px;
             transition: all 0.3s ease;
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: none;
         }}
         
+        /* Primary buttons (default green styling) */
         .stButton button[kind="primary"] {{
             background: {self.config.secondary_color};
             color: white;
@@ -229,21 +273,53 @@ class StreamlitChatTheme:
             border: none !important;
         }}
         
+        /* Secondary buttons (white background with green text) */
         .stButton button[kind="secondary"] {{
-            background: {self.config.background_dark};
-            color: {self.config.primary_color};
-            border: none !important;
+            background: white !important;
+            color: {self.config.primary_color} !important;
+            border: 2px solid {self.config.primary_color} !important;
             width: 100%;
             text-align: left;
             margin: 5px 0;
+            text-shadow: none !important;
         }}
         
         .stButton button[kind="secondary"]:hover {{
-            background: {self.config.secondary_color};
-            color: white;
+            background: {self.config.secondary_color} !important;
+            color: white !important;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px {self.config.shadow_color};
-            border: none !important;
+            border: 2px solid {self.config.secondary_color} !important;
+        }}
+        
+        /* All white background buttons get green text with no shadows */
+        .stButton button[style*="background-color: white"], 
+        .stButton button[style*="background-color: #ffffff"],
+        .stButton button[style*="background-color: #FFFFFF"],
+        .stButton button {{
+            background: white !important;
+            color: {self.config.primary_color} !important;
+            border: 2px solid {self.config.primary_color} !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+        }}
+        
+        /* Specific targeting for suggestion buttons and other white buttons */
+        .stButton > button,
+        .stButton button[data-testid="baseButton-secondary"] {{
+            background: white !important;
+            color: {self.config.primary_color} !important;
+            border: 2px solid {self.config.primary_color} !important;
+            text-shadow: none !important;
+            box-shadow: none !important;
+        }}
+        
+        .stButton button:hover {{
+            background: {self.config.secondary_color} !important;
+            color: white !important;
+            border: 2px solid {self.config.secondary_color} !important;
+            text-shadow: none !important;
         }}
         
         /* Form submit button - Special styling for Start Chatting and Send Message */
@@ -257,7 +333,7 @@ class StreamlitChatTheme:
             font-size: 16px;
             width: 100%;
             transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            backdrop-filter: none;
         }}
         
         .stForm button:hover {{
@@ -357,9 +433,69 @@ class StreamlitChatTheme:
             box-shadow: 0 4px 15px rgba(2, 102, 7, 0.4) !important;
         }}
         
-        /* File uploader text */
+        /* File uploader text - No blur or shadow effects */
         .stFileUploader small {{
-            color: {self.config.text_color};
+            color: #000000 !important;
+            text-shadow: none !important;
+            backdrop-filter: none !important;
+            filter: none !important;
+        }}
+        
+        /* File uploader drag text - No blur or shadow */
+        .stFileUploader > div > div > div > div > div {{
+            color: #000000 !important;
+            text-shadow: none !important;
+            backdrop-filter: none !important;
+            filter: none !important;
+        }}
+        
+        /* Main file uploader text - No blur or shadow */
+        .stFileUploader span {{
+            color: #000000 !important;
+            text-shadow: none !important;
+            backdrop-filter: none !important;
+            filter: none !important;
+        }}
+        
+        /* All file uploader text elements - Remove all effects */
+        .stFileUploader * {{
+            text-shadow: none !important;
+            backdrop-filter: none !important;
+            filter: none !important;
+        }}
+        
+        /* For dark mode - when background is dark */
+        @media (prefers-color-scheme: dark) {{
+            .stFileUploader small {{
+                color: white !important;
+                text-shadow: none !important;
+            }}
+            
+            .stFileUploader > div > div > div > div > div {{
+                color: white !important;
+                text-shadow: none !important;
+            }}
+            
+            .stFileUploader span {{
+                color: white !important;
+                text-shadow: none !important;
+            }}
+        }}
+        
+        /* Streamlit's dark theme class detection */
+        [data-theme="dark"] .stFileUploader small,
+        [data-theme="dark"] .stFileUploader > div > div > div > div > div,
+        [data-theme="dark"] .stFileUploader span {{
+            color: white !important;
+            text-shadow: none !important;
+        }}
+        
+        /* Light theme explicit styling */
+        [data-theme="light"] .stFileUploader small,
+        [data-theme="light"] .stFileUploader > div > div > div > div > div,
+        [data-theme="light"] .stFileUploader span {{
+            color: #000000 !important;
+            text-shadow: none !important;
         }}
         """
     
