@@ -91,8 +91,8 @@ def main():
         input_container = st.container()
         
         with input_container:
-            # Create tabs for text and image input
-            tab1, tab2 = st.tabs(["💬 **Ask Question**", "🖼️ **Upload Image**"])
+            # Create tabs for text input, image input, and new session
+            tab1, tab2, tab3 = st.tabs(["💬 **Ask Question**", "🖼️ **Upload Image**", "🔄 **Start New Session**"])
             
             with tab1:
                 with st.form("chat_form", clear_on_submit=True):
@@ -129,14 +129,21 @@ def main():
                             st.rerun()
                         else:
                             st.error("Please upload an image first.")
-
-        # Start new session
-        col1, col2, col3 = st.columns([1, 1, 1])
-        with col2:
-            if st.button("Start a new session", help="Clear chat and start fresh"):
-                for key in ["name", "region", "chat_history"]:
-                    st.session_state.pop(key, None)
-                st.rerun()
+            
+            with tab3:
+                st.markdown("**Ready to start fresh?**")
+                st.markdown("This will clear your current chat history and allow you to begin a new conversation.")
+                
+                # Add some spacing
+                st.markdown("")
+                
+                # Center the button
+                col1, col2, col3 = st.columns([1, 2, 1])
+                with col2:
+                    if st.button("🔄 Start New Session", help="Clear chat and start fresh", key="new_session_tab"):
+                        for key in ["name", "region", "chat_history"]:
+                            st.session_state.pop(key, None)
+                        st.rerun()
 
         # Quick suggestions for new users
         if not st.session_state.chat_history:

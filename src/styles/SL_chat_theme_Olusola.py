@@ -261,23 +261,23 @@ class StreamlitChatTheme:
         /* Primary buttons (default green styling) */
         .stButton button[kind="primary"] {{
             background: {self.config.secondary_color};
-            color: white;
+            color: {self.config.secondary_color};
             box-shadow: 0 4px 15px {self.config.shadow_color};
             border: none !important;
         }}
         
         .stButton button[kind="primary"]:hover {{
-            background: {self.config.secondary_color} !important;
+            background: {self.config.secondary_color};
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(2, 102, 7, 0.4);
             border: none !important;
         }}
         
-        /* Secondary buttons (white background with green text) */
+        /* Secondary buttons (mint-green background with green text) */
         .stButton button[kind="secondary"] {{
-            background: white !important;
-            color: {self.config.primary_color} !important;
-            border: 2px solid {self.config.primary_color} !important;
+            background: mint-green !important;
+            color: {self.config.secondary_color} !important;
+            border: 2px solid {self.config.secondary_color} !important;
             width: 100%;
             text-align: left;
             margin: 5px 0;
@@ -298,8 +298,8 @@ class StreamlitChatTheme:
         .stButton button[style*="background-color: #FFFFFF"],
         .stButton button {{
             background: white !important;
-            color: {self.config.primary_color} !important;
-            border: 2px solid {self.config.primary_color} !important;
+            color: {self.config.secondary_color} !important;
+            border: 2px solid {self.config.secondary_color} !important;
             text-shadow: none !important;
             box-shadow: none !important;
             backdrop-filter: none !important;
@@ -309,8 +309,8 @@ class StreamlitChatTheme:
         .stButton > button,
         .stButton button[data-testid="baseButton-secondary"] {{
             background: white !important;
-            color: {self.config.primary_color} !important;
-            border: 2px solid {self.config.primary_color} !important;
+            color: {self.config.secondary_color} !important;
+            border: 2px solid {self.config.secondary_color} !important;
             text-shadow: none !important;
             box-shadow: none !important;
         }}
