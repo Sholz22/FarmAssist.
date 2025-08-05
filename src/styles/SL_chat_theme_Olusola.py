@@ -130,7 +130,7 @@ class StreamlitChatTheme:
             padding: 15px 20px;
             border-radius: 20px 20px 20px 5px;
             margin: 10px 20% 10px 0;
-            border-left: 4px solid {self.config.primary_color};
+            border-left: 4px solid #026607;
             box-shadow: none !important;
             backdrop-filter: none !important;
             text-shadow: none !important;
