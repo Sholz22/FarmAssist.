@@ -26,12 +26,13 @@ def verify_crop_image_with_gemini(image):
     """Use Gemini to verify if the image contains a crop leaf"""
     try:
         verification_prompt = """
-        Please analyze this image and determine if it shows a plant part that could be analyzed for disease detection.
+        Please analyze this image and determine if it shows a plant part or crop worm that could be analyzed for disease detection.
 
         I need you to check if this image contains:
         1. A visible plant part such as a crop leaf, tree trunk, bark, stem, or branch
         2. Clear visual signs or surface details that may allow for disease analysis
-        3. No presence of humans, animals, or unrelated objects
+        3. A crop worm or insect that could be analyzed for pest detection
+        4. No presence of humans, animals, or unrelated objects
 
         Please respond with ONLY one of these options:
         - "VALID_PLANT_IMAGE" if it's a suitable plant image for disease or health analysis

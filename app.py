@@ -92,7 +92,7 @@ def main():
         
         with input_container:
             # Create tabs for text input, image input, and new session
-            tab1, tab2, tab3 = st.tabs(["💬 **Ask Question**", "🖼️ **Upload Image**", "🔄 **Start New Session**"])
+            tab1, tab2, tab3 = st.tabs(["💬 **Ask Question**", "🖼️ **Upload Image**", "🔄 **Restart Session**"])
             
             with tab1:
                 with st.form("chat_form", clear_on_submit=True):
