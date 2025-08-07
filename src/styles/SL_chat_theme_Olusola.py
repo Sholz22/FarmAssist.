@@ -245,9 +245,9 @@ class StreamlitChatTheme:
         """
     
     def _get_button_css(self) -> str:
-        """CSS for button styling."""
+        """CSS for button styling with uniform sizing and alignment."""
         return f"""
-        /* Button styling */
+        /* Button styling with uniform sizing */
         .stButton button {{
             border-radius: {self.config.button_radius};
             border: none !important;
@@ -256,12 +256,23 @@ class StreamlitChatTheme:
             transition: all 0.3s ease;
             cursor: pointer;
             backdrop-filter: none;
+            /* Ensure uniform sizing */
+            height: 50px !important;
+            min-height: 50px !important;
+            max-height: 50px !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
         }}
         
         /* Primary buttons (default green styling) */
         .stButton button[kind="primary"] {{
             background: {self.config.secondary_color};
-            color: {self.config.secondary_color};
+            color: white !important;
             box-shadow: 0 4px 15px {self.config.shadow_color};
             border: none !important;
         }}
@@ -279,7 +290,7 @@ class StreamlitChatTheme:
             color: {self.config.secondary_color} !important;
             border: 2px solid {self.config.secondary_color} !important;
             width: 100%;
-            text-align: left;
+            text-align: center !important;
             margin: 5px 0;
             text-shadow: none !important;
         }}
@@ -292,20 +303,8 @@ class StreamlitChatTheme:
             border: 2px solid {self.config.secondary_color} !important;
         }}
         
-        /* All white background buttons get green text with no shadows */
-        .stButton button[style*="background-color: white"], 
-        .stButton button[style*="background-color: #ffffff"],
-        .stButton button[style*="background-color: #FFFFFF"],
-        .stButton button {{
-            background: white !important;
-            color: {self.config.secondary_color} !important;
-            border: 2px solid {self.config.secondary_color} !important;
-            text-shadow: none !important;
-            box-shadow: none !important;
-            backdrop-filter: none !important;
-        }}
-        
-        /* Specific targeting for suggestion buttons and other white buttons */
+        /* FAQ/Suggestion buttons - Uniform sizing and alignment */
+        .stButton button,
         .stButton > button,
         .stButton button[data-testid="baseButton-secondary"] {{
             background: white !important;
@@ -313,13 +312,48 @@ class StreamlitChatTheme:
             border: 2px solid {self.config.secondary_color} !important;
             text-shadow: none !important;
             box-shadow: none !important;
+            /* Force uniform dimensions */
+            width: 100% !important;
+            height: 50px !important;
+            min-height: 50px !important;
+            max-height: 50px !important;
+            font-size: 14px !important;
+            line-height: 1.2 !important;
+            padding: 8px 16px !important;
+            margin: 2px 0 !important;
+            text-align: center !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-sizing: border-box !important;
+            word-wrap: break-word !important;
+            white-space: normal !important;
+            overflow: hidden !important;
         }}
         
+        /* Hover state for all buttons */
         .stButton button:hover {{
             background: {self.config.secondary_color} !important;
             color: white !important;
             border: 2px solid {self.config.secondary_color} !important;
             text-shadow: none !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(2, 102, 7, 0.3) !important;
+        }}
+        
+        /* Container for buttons in columns */
+        .stButton {{
+            width: 100% !important;
+        }}
+        
+        /* Ensure buttons in columns have equal width */
+        div[data-testid="column"] .stButton {{
+            width: 100% !important;
+        }}
+        
+        div[data-testid="column"] .stButton button {{
+            width: 100% !important;
+            margin: 2px 0 !important;
         }}
         
         /* Form submit button - Special styling for Start Chatting and Send Message */
@@ -332,6 +366,7 @@ class StreamlitChatTheme:
             font-weight: 600;
             font-size: 16px;
             width: 100%;
+            height: 50px !important;
             transition: all 0.3s ease;
             backdrop-filter: none;
         }}
@@ -566,8 +601,11 @@ class StreamlitChatTheme:
             }
             
             .stButton button {
-                font-size: 14px;
-                padding: 10px 20px;
+                font-size: 12px !important;
+                padding: 8px 16px !important;
+                height: 45px !important;
+                min-height: 45px !important;
+                max-height: 45px !important;
             }
             
             .main .block-container {
@@ -580,6 +618,17 @@ class StreamlitChatTheme:
                 padding-left: 15px;
                 padding-right: 15px;
                 font-size: 14px;
+            }
+        }
+        
+        /* Additional responsive adjustments for very small screens */
+        @media (max-width: 480px) {
+            .stButton button {
+                font-size: 11px !important;
+                padding: 6px 12px !important;
+                height: 40px !important;
+                min-height: 40px !important;
+                max-height: 40px !important;
             }
         }
         """
